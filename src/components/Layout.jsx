@@ -1,16 +1,25 @@
 import { Outlet } from 'react-router-dom';
 import SidebarMenu from './SidebarMenu';
+import styled from 'styled-components';
 
-const Layout = () => {
+const Layout = ({ toggleTheme, themeMode }) => {
+  const Container = styled.main`
+    flex: 1;
+    padding: 20px;
+    min-height: 100vh;
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
+  `;
+
   return (
-    <div className="container">
+    <Container>
       <aside>
-        <SidebarMenu />
+        <SidebarMenu toggleTheme={toggleTheme} themeMode={themeMode} />
       </aside>
       <main>
         <Outlet />
       </main>
-    </div>
+    </Container>
   );
 };
 

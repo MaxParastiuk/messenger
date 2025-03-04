@@ -1,4 +1,4 @@
-const SidebarMenu = () => {
+const SidebarMenu = ({ toggleTheme, themeMode }) => {
   return (
     <div className="sidebar-container">
       <div className="user-info">
@@ -9,7 +9,9 @@ const SidebarMenu = () => {
         <p>Messeges</p>
         <p>Contact</p>
         <p>Settings</p>
-        <p>Night mode</p>
+        <button onClick={toggleTheme}>
+          {themeMode === 'light' ? 'Night mode' : 'Light mode'}
+        </button>
         <button>log out</button>
       </div>
     </div>
