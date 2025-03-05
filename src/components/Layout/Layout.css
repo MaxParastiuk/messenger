@@ -1,0 +1,18 @@
+.inner-container {
+  flex-direction: row;
+  display: flex;
+  flex: 1;
+}
+.sidebar-container {
+  display: flex;
+  flex: 0.5;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+aside {
+  flex: 1;
+}
+main {
+  flex: 2;
+}

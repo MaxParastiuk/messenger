@@ -1,0 +1,36 @@
+.sidebar-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.info-part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-app {
+  height: 40px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+.options p {
+  text-align: center;
+}
+.active-option {
+  background-color: #0f82ff;
+  padding: 8px;
+  border-radius: 0 12px 12px;
+}
