@@ -4,11 +4,12 @@ const SidebarMenu = ({ toggleTheme, themeMode }) => {
   return (
     <>
       <div className="info-part">
-        <img
-          className="logo-app"
-          src={themeMode === 'light' ? './light-logo.png' : './dark-logo.png'}
-          alt="chat logo"
-        />
+        {themeMode === 'light' ? (
+          <img className="logo-app" src={'./light-logo.png'} alt="chat logo" />
+        ) : (
+          <img className="logo-app" src={'./dark-logo.png'} alt="chat logo" />
+        )}
+
         <div className="user-info">
           <img src="./avatar.png" alt="User image" />
           <p className="user-name">John Doe</p>
