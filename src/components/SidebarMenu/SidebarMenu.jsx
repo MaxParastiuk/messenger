@@ -22,9 +22,7 @@ const SidebarMenu = ({ toggleTheme, themeMode }) => {
         <ThemeToggle toggleMode={toggleTheme} themeMode={themeMode} />
       </div>
 
-      <div>
-        <button>log out</button>
-      </div>
+      <button className="logout-btn">logout</button>
     </>
   );
 };

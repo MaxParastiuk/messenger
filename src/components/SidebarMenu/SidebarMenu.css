@@ -34,3 +34,22 @@
   padding: 8px;
   border-radius: 0 12px 12px;
 }
+
+.logout-btn {
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 10px;
+  font-size: 15px;
+  color: inherit;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px;
+  background-color: #0f82ff;
+  cursor: pointer;
+  transition: background-color 1s;
+}
+
+.logout-btn:hover {
+  background-color: rgb(228 129 140);
+}
