@@ -1,0 +1,5 @@
+.conversation-container {
+  display: flex;
+  flex: 2;
+  padding: 20px;
+}

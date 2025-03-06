@@ -22,13 +22,16 @@ const Container = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
-  min-height: 100vh;
+  min-height: 0;
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
 `;
 
 const MainContainer = styled.main`
-  padding: 20px;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background-color: ${({ theme }) => theme.mainBg};
 `;
 
