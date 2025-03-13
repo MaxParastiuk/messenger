@@ -1,5 +1,71 @@
-.conversation-container {
+.chat-container {
   display: flex;
   flex: 2;
+  flex-direction: column;
+}
+.current-user {
+  display: flex;
+  gap: 10px;
+}
+.current-user img {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+
+.chat-header {
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.current-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.current-user-info p {
+  margin: 0;
+}
+.extra-options {
+  display: flex;
+  gap: 15px;
+}
+.chat {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  flex: 2;
+}
+.input-container {
+  padding: 10px 20px;
+}
+
+.input-message {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  color: #333;
+  background-color: inherit;
+  resize: none;
+  color: inherit;
+}
+
+.input-message::placeholder {
+  color: #aaa;
+}
+button {
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+button:hover {
+  transform: scale(1.1);
+  color: #598ede;
+}
+
+button .material-icons {
+  font-size: 30px;
 }
