@@ -58,14 +58,14 @@
 .input-message::placeholder {
   color: #aaa;
 }
-button {
+.chat-container button {
   transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-button:hover {
+.chat-container button:hover {
   transform: scale(1.1);
   color: #598ede;
 }
 
-button .material-icons {
+.chat-container button .material-icons {
   font-size: 30px;
 }

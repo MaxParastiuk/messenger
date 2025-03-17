@@ -10,6 +10,7 @@ export const lightTheme = {
   chatSecondBg: '#F6F6F6',
   myMessageBg: '#001835',
   otherMessageBg: '#0F82FF',
+  dateSeparatorBg: '#cacad0',
 };
 
 export const darkTheme = {
@@ -24,4 +25,5 @@ export const darkTheme = {
   chatSecondBg: '#001835',
   myMessageBg: '#4174B2',
   otherMessageBg: '#4A647F',
+  dateSeparatorBg: '#222b64',
 };
