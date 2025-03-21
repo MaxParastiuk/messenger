@@ -27,7 +27,9 @@ function App() {
         <Routes>
           <Route
             path="/login"
-            element={<LoginPage toggleTheme={toggleTheme} />}
+            element={
+              <LoginPage toggleTheme={toggleTheme} themeMode={themeMode} />
+            }
           ></Route>
           <Route element={<RequireAuth />}>
             <Route

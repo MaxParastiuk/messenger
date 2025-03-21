@@ -11,6 +11,8 @@ export const lightTheme = {
   myMessageBg: '#001835',
   otherMessageBg: '#0F82FF',
   dateSeparatorBg: '#cacad0',
+  authSwitcherBg: '#ffffff',
+  authSwitcherActiveBg: '#a2a2a2 !important',
 };
 
 export const darkTheme = {
@@ -26,4 +28,6 @@ export const darkTheme = {
   myMessageBg: '#4174B2',
   otherMessageBg: '#4A647F',
   dateSeparatorBg: '#222b64',
+  authSwitcherBg: '#16356d',
+  authSwitcherActiveBg: '#0049a4 !important',
 };

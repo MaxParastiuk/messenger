@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Switch from 'react-switch';
-const ThemeToggle = ({ toggleMode, themeMode }) => {
+const ThemeToggle = ({ toggleMode, themeMode, style }) => {
   // const [isNightMode, setNightMode] = useState(() => {
   //   const storeMode = localStorage.getItem('nightMode');
   //   return storeMode ? JSON.parse(storeMode) : false;
@@ -21,6 +21,7 @@ const ThemeToggle = ({ toggleMode, themeMode }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        ...style,
       }}
     >
       <span style={{ marginRight: '8px' }}>Night mode</span>
