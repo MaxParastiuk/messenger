@@ -1,0 +1,61 @@
+.friends_list__item img {
+  height: 70px;
+  width: 70px;
+  border-radius: 50px;
+  align-self: center;
+}
+
+.friend-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-self: center;
+  gap: 4px;
+}
+
+.friend-item__left {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex: 1;
+}
+
+.friend-info .friend-name {
+  margin: 0;
+}
+
+.friend-delete-btn {
+}
+
+.friend-delete-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: #972121e0;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.friend-delete-btn:hover {
+  background-color: #940303;
+  transform: translateY(-1px);
+}
+
+.friend-delete-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.friend-delete-btn .material-icons {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

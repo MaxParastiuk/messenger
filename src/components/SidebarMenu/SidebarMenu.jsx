@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import ThemeToggle from '../ThemeToggle';
 import './SidebarMenu.css';
 const SidebarMenu = ({ toggleTheme, themeMode }) => {
@@ -15,11 +16,21 @@ const SidebarMenu = ({ toggleTheme, themeMode }) => {
           <p className="user-name">John Doe</p>
         </div>
       </div>
-
-      <div className="options">
-        <p className="active-option">Messeges</p>
-        <p>Contact</p>
-        <p>Settings</p>
+      {/* HAVE TO BE FIXED */}
+      <div className="sidebar-options">
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) => (isActive ? 'active-option' : '')}
+        >
+          Messeges
+        </NavLink>
+        <NavLink
+          to="friends"
+          className={({ isActive }) => (isActive ? 'active-option' : '')}
+        >
+          Friends
+        </NavLink>
         <ThemeToggle toggleMode={toggleTheme} themeMode={themeMode} />
       </div>
 

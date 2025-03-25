@@ -26,13 +26,30 @@
   height: 150px;
   border-radius: 100%;
 }
-.options p {
-  text-align: center;
+
+.sidebar-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.active-option {
-  background-color: #0f82ff;
+.sidebar-options a {
+  text-align: center;
+  flex: 1;
   padding: 8px;
   border-radius: 0 12px 12px;
+  transition: transform 0.1s ease-out, background-color 0.2s ease-out;
+}
+
+.sidebar-options a:active {
+  transform: scale(0.9);
+}
+
+.sidebar-options a:hover {
+  background-color: rgb(88 142 198);
+}
+
+.active-option {
+  background-color: #0f82ff;
 }
 
 .logout-btn {

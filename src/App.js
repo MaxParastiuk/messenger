@@ -7,6 +7,7 @@ import ChatPage from './pages/ChatPage';
 import { ThemeProvider } from 'styled-components';
 import { useEffect, useState } from 'react';
 import { darkTheme, lightTheme } from './theme/theme';
+import FriendsPage from './pages/FriendsPage';
 
 function App() {
   const [themeMode, setThemeMode] = useState(() => {
@@ -39,6 +40,7 @@ function App() {
               }
             >
               <Route element={<ChatPage />} index></Route>
+              <Route path="friends" element={<FriendsPage />}></Route>
             </Route>
           </Route>
         </Routes>

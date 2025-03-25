@@ -15,7 +15,7 @@ const ChatListItem = () => {
 
 const UserMessege = styled.div`
   display: flex;
-  background-color: ${({ theme }) => theme.userMessegeBg};
+  background-color: ${({ theme }) => theme.userBg};
   gap: 15px;
   padding: 10px 5px;
   align-items: center;

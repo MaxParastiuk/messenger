@@ -21,6 +21,7 @@ const ThemeToggle = ({ toggleMode, themeMode, style }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: '8px',
         ...style,
       }}
     >

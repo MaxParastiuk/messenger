@@ -3,7 +3,7 @@ export const lightTheme = {
   text: '#000000',
   mainBg: '#DDDDDD',
   border: '2px solid #F6F6F6',
-  userMessegeBg: '#F6F6F6',
+  userBg: '#F6F6F6',
   chatNameColor: '#007AFF',
   scrollbarThumbColor: '#c4c4c4',
   scrollbarBg: '#f0f0f0',
@@ -13,6 +13,7 @@ export const lightTheme = {
   dateSeparatorBg: '#cacad0',
   authSwitcherBg: '#ffffff',
   authSwitcherActiveBg: '#a2a2a2 !important',
+  friendsHeaderBg: '#d2d2d2',
 };
 
 export const darkTheme = {
@@ -20,7 +21,7 @@ export const darkTheme = {
   text: '#ffffff',
   mainBg: '#002046',
   border: '2px solid #1c1d63ee',
-  userMessegeBg: '#112959',
+  userBg: '#112959',
   chatNameColor: '#C9C9C9',
   scrollbarThumbColor: '#45547f',
   scrollbarBg: '#252d67',
@@ -30,4 +31,5 @@ export const darkTheme = {
   dateSeparatorBg: '#222b64',
   authSwitcherBg: '#16356d',
   authSwitcherActiveBg: '#0049a4 !important',
+  friendsHeaderBg: '#0b2f5a',
 };

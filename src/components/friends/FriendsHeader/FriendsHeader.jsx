@@ -1,0 +1,84 @@
+import './FriendsHeader.css';
+import styled from 'styled-components';
+const FriendsHeader = () => {
+  return (
+    <FriendsHeaderContainer className="friends-list-header">
+      <FriendsListHeadline>Friends List</FriendsListHeadline>
+      <div className="friends-controls">
+        <div className="friends-search">
+          <SearchInput
+            type="text"
+            id="search-friend"
+            name="search-friend"
+            placeholder="Search friend..."
+            aria-label="Search friend"
+          />
+          <SearchIcon className="material-icons">search</SearchIcon>
+        </div>
+
+        <div className="friends-panel">
+          <button
+            className="friends-panel__requests"
+            aria-label="Open friend requests"
+          >
+            <span className="btn-text">Requests</span>
+            <span class="material-icons">diversity_1</span>
+          </button>
+          <button className="friends-panel__add" aria-label="Add a new friend">
+            <span className="btn-text">Add Friend</span>
+            <span class="material-icons">person_add</span>
+          </button>
+        </div>
+      </div>
+    </FriendsHeaderContainer>
+  );
+};
+
+const FriendsHeaderContainer = styled.div`
+  background-color: ${({ theme }) => theme.friendsHeaderBg};
+`;
+
+const FriendsListHeadline = styled.h2`
+  text-transform: uppercase;
+  color: #0f82ff;
+  letter-spacing: 3px;
+  font-weight: 600;
+`;
+
+const SearchInput = styled.input`
+  padding: 0.5rem 2.4rem 0.5rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  min-width: 250px;
+  outline: none;
+  background: #ffffff;
+  color: #333;
+  transition: all 0.3s ease;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  &::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+
+  &:hover {
+    border-color: #bbb;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  &:focus {
+    border-color: #0f82ff;
+    box-shadow: 0 0 0 3px rgba(15, 130, 255, 0.25);
+  }
+`;
+
+const SearchIcon = styled.span`
+  position: absolute;
+  right: 0.6rem;
+  color: #888;
+  pointer-events: none;
+`;
+
+export default FriendsHeader;
