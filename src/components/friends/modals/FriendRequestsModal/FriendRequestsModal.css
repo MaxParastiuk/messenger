@@ -1,0 +1,64 @@
+.friend-requests__scroll-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: 45vh;
+  padding-right: 6px;
+  margin-right: -6px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+}
+
+.friend-requests__scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.friend-requests__scroll-area::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.friend-requests__empty {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+.friend-requests__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 18px;
+  padding: 10px;
+}
+
+.friend-requests__controls {
+  display: flex;
+  gap: 10px;
+}
+
+.request-accept-btn {
+  color: white;
+  background: #0e650e;
+  padding: 3px 10px;
+  border-radius: 10px;
+  transition: background-color 0.5s ease-out;
+}
+
+.request-decline-btn {
+  color: white;
+  background: maroon;
+  padding: 3px 10px;
+  border-radius: 10px;
+  transition: background-color 0.5s ease-out;
+}
+
+.friend-requests__controls .request-decline-btn:hover {
+  background-color: rgb(255, 15, 15);
+}
+
+.friend-requests__controls .request-accept-btn:hover {
+  background-color: rgb(0 172 11);
+}

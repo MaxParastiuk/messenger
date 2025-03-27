@@ -1,6 +1,6 @@
 import './FriendItem.css';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+
 const FriendItem = ({ id, name, avatar, status }) => {
   return (
     <FriendListItem className="friends_list__item">
@@ -14,7 +14,7 @@ const FriendItem = ({ id, name, avatar, status }) => {
       <div className="friend-interaction">
         <button className="friend-delete-btn" aria-label="Remove friend">
           <span className="btn-text">Unfriend</span>
-          <span class="material-icons">person_remove</span>
+          <span className="material-icons">person_remove</span>
         </button>
       </div>
     </FriendListItem>

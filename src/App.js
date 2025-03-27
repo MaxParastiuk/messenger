@@ -8,6 +8,8 @@ import { ThemeProvider } from 'styled-components';
 import { useEffect, useState } from 'react';
 import { darkTheme, lightTheme } from './theme/theme';
 import FriendsPage from './pages/FriendsPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [themeMode, setThemeMode] = useState(() => {
@@ -25,6 +27,17 @@ function App() {
   return (
     <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
       <BrowserRouter>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={themeMode}
+        />
         <Routes>
           <Route
             path="/login"
