@@ -1,28 +1,28 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
 import { auth } from '../firebase';
+import { Navigate, Outlet } from 'react-router-dom';
 
-const RequireAuth = () => {
+const RequireGuest = () => {
   const [user, setUser] = useState(undefined);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+    const unsub = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
       setLoading(false);
     });
 
-    return () => unsubscribe();
+    return () => unsub();
   }, []);
 
   if (loading) return null;
 
-  if (!user) {
-    return <Navigate to="/login" replace />;
+  if (user) {
+    <Navigate to="/" replace />;
   }
 
   return <Outlet />;
 };
 
-export default RequireAuth;
+export default RequireGuest;

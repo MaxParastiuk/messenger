@@ -1,12 +1,17 @@
-import { useState } from 'react';
 import './AuthForm.css';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { GoogleLogin } from '@react-oauth/google';
 import SignUpForm from './SignUpForm/SignUpForm';
 import LoginForm from './LoginForm/LoginForm';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useUser } from '../../contexts/UserContext';
 
 const AuthForm = ({ themeMode }) => {
+  const navigate = useNavigate();
+  const { loginWithEmail, registerWithEmail, signInWithGoogle, user } =
+    useUser();
   const [isRegister, setRegister] = useState(false);
   const {
     register,
@@ -16,11 +21,44 @@ const AuthForm = ({ themeMode }) => {
     formState: { errors, touchedFields },
   } = useForm({ mode: 'onBlur' });
 
-  const onSubmit = (data) => {
-    if (isRegister) {
-      console.log('sing up', data);
-    } else {
-      console.log('login', data);
+  useEffect(() => {
+    if (user) {
+      navigate('/', { replace: true });
+    }
+  }, [user, navigate]);
+
+  const onSubmit = async (data) => {
+    try {
+      if (isRegister) {
+        await registerWithEmail(data);
+        toast.success('Registration successful');
+      } else {
+        await loginWithEmail(data);
+        toast.success('Logged in successfully');
+      }
+      // navigate('/');
+    } catch (error) {
+      const firebaseErrorMap = {
+        'auth/email-already-in-use': 'Email is already in use',
+        'auth/invalid-email': 'Invalid email address',
+        'auth/weak-password': 'Weak password (minimum 6 characters)',
+        'auth/user-not-found': 'User not found',
+        'auth/wrong-password': 'Incorrect password',
+      };
+      const message = firebaseErrorMap[error.code] || 'Authentication failed';
+
+      toast.error(message);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      toast.success('Signed in with Google');
+      navigate('/');
+    } catch (error) {
+      toast.error('Google sign-in failed');
+      console.error(error);
     }
   };
 
@@ -63,15 +101,10 @@ const AuthForm = ({ themeMode }) => {
       <div className="form-container">
         <h2 className="form-title">{isRegister ? 'Register' : 'Login'}</h2>
         <div className="alternative-auth">
-          <GoogleLogin
-            theme="outline"
-            size="large"
-            width="300"
-            text="signin_with"
-            shape="pill"
-            onSuccess={(response) => console.log('Success:', response)}
-            onError={() => console.log('Error')}
-          />
+          <button onClick={handleGoogleSignIn} className="google-login-btn">
+            <img src="/g-logo.png" alt="Google" />
+            Continue with Google
+          </button>
         </div>
 
         <div className="divider">

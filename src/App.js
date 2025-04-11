@@ -10,6 +10,7 @@ import { darkTheme, lightTheme } from './theme/theme';
 import FriendsPage from './pages/FriendsPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import RequireGuest from './components/RequireGuest';
 
 function App() {
   const [themeMode, setThemeMode] = useState(() => {
@@ -39,12 +40,15 @@ function App() {
           theme={themeMode}
         />
         <Routes>
-          <Route
-            path="/login"
-            element={
-              <LoginPage toggleTheme={toggleTheme} themeMode={themeMode} />
-            }
-          ></Route>
+          <Route element={<RequireGuest />}>
+            <Route
+              path="/login"
+              element={
+                <LoginPage toggleTheme={toggleTheme} themeMode={themeMode} />
+              }
+            ></Route>
+          </Route>
+
           <Route element={<RequireAuth />}>
             <Route
               path="/"
