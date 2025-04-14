@@ -8,6 +8,7 @@ const LoginForm = ({ register, errors, touchedFields }) => {
           type="email"
           className="input__field"
           placeholder=" "
+          autoComplete="off"
           {...register('email', {
             required: 'email is required',
             minLength: {
