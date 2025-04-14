@@ -3,22 +3,22 @@ const LoginForm = ({ register, errors, touchedFields }) => {
     <>
       <label className="input">
         <input
-          id="username"
-          name="username"
-          type="text"
+          id="email"
+          name="email"
+          type="email"
           className="input__field"
           placeholder=" "
-          {...register('username', {
-            required: 'Username is required',
+          {...register('email', {
+            required: 'email is required',
             minLength: {
               value: 3,
               message: 'Must be at least 3 characters',
             },
           })}
         />
-        <span className="input__label">Username</span>
-        {touchedFields.username && errors.username && (
-          <span className="error">{errors.username.message}</span>
+        <span className="input__label">Email</span>
+        {touchedFields.email && errors.email && (
+          <span className="error">{errors.email.message}</span>
         )}
       </label>
       <label className="input">

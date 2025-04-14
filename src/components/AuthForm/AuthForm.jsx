@@ -10,7 +10,7 @@ import { useUser } from '../../contexts/UserContext';
 
 const AuthForm = ({ themeMode }) => {
   const navigate = useNavigate();
-  const { loginWithEmail, registerWithEmail, signInWithGoogle, user } =
+  const { loginWithEmail, registerWithEmail, signInWithGoogle, userProfile } =
     useUser();
   const [isRegister, setRegister] = useState(false);
   const {
@@ -22,10 +22,10 @@ const AuthForm = ({ themeMode }) => {
   } = useForm({ mode: 'onBlur' });
 
   useEffect(() => {
-    if (user) {
+    if (userProfile) {
       navigate('/', { replace: true });
     }
-  }, [user, navigate]);
+  }, [userProfile, navigate]);
 
   const onSubmit = async (data) => {
     try {
@@ -41,9 +41,8 @@ const AuthForm = ({ themeMode }) => {
       const firebaseErrorMap = {
         'auth/email-already-in-use': 'Email is already in use',
         'auth/invalid-email': 'Invalid email address',
-        'auth/weak-password': 'Weak password (minimum 6 characters)',
         'auth/user-not-found': 'User not found',
-        'auth/wrong-password': 'Incorrect password',
+        'auth/network-request-failed': 'Network error, check connection',
       };
       const message = firebaseErrorMap[error.code] || 'Authentication failed';
 

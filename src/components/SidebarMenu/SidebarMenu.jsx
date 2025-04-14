@@ -1,7 +1,21 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import ThemeToggle from '../ThemeToggle';
 import './SidebarMenu.css';
+import { useUser } from '../../contexts/UserContext';
+
 const SidebarMenu = ({ toggleTheme, themeMode }) => {
+  const { userProfile, loading, logout } = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
   return (
     <>
       <div className="info-part">
@@ -11,10 +25,16 @@ const SidebarMenu = ({ toggleTheme, themeMode }) => {
           <img className="logo-app" src={'./dark-logo.png'} alt="chat logo" />
         )}
 
-        <div className="user-info">
-          <img src="./avatar.png" alt="User image" />
-          <p className="user-name">John Doe</p>
-        </div>
+        {!loading && userProfile && (
+          <div className="user-info">
+            <img
+              src={userProfile.photoURL || './avatar.png'}
+              alt="User avatar"
+              className="user-avatar"
+            />
+            <p className="user-name">{userProfile.username}</p>
+          </div>
+        )}
       </div>
       {/* HAVE TO BE FIXED */}
       <div className="sidebar-options">
@@ -34,7 +54,9 @@ const SidebarMenu = ({ toggleTheme, themeMode }) => {
         <ThemeToggle toggleMode={toggleTheme} themeMode={themeMode} />
       </div>
 
-      <button className="logout-btn">logout</button>
+      <button className="logout-btn" onClick={handleLogout}>
+        logout
+      </button>
     </>
   );
 };
