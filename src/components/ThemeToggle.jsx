@@ -1,20 +1,5 @@
-import { useEffect, useState } from 'react';
 import Switch from 'react-switch';
 const ThemeToggle = ({ toggleMode, themeMode, style }) => {
-  // const [isNightMode, setNightMode] = useState(() => {
-  //   const storeMode = localStorage.getItem('nightMode');
-  //   return storeMode ? JSON.parse(storeMode) : false;
-  // });
-
-  // useEffect(() => {
-  //   localStorage.setItem('nightMode', JSON.stringify(isNightMode));
-  // }, [isNightMode]);
-
-  // const onChangeMode = (checked) => {
-  //   toggleMode();
-  //   setNightMode(checked);
-  // };
-
   return (
     <div
       style={{

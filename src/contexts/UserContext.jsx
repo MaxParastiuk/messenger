@@ -70,7 +70,6 @@ export const UserProvider = ({ children }) => {
 
   const loginWithEmail = async ({ email, password }) => {
     const result = await signInWithEmailAndPassword(auth, email, password);
-    console.log(email, password, 'email');
     const userRef = doc(db, 'users', result.user.uid);
     const userSnap = await getDoc(userRef);
 
