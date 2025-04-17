@@ -15,7 +15,7 @@ const FriendRequestsModal = ({ requests, onAccept, onDecline, onClose }) => {
         ) : (
           requests.map((request) => (
             <RequestItem className="friend-requests__item" key={request.id}>
-              <span>{request.name}</span>
+              <span>{request.fromUsername}</span>
               <div className="friend-requests__controls">
                 <button
                   className="request-accept-btn"

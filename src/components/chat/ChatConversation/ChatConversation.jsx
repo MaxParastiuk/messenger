@@ -85,11 +85,6 @@ const ChatConversation = () => {
       return groups;
     }, {});
   }, [messages]);
-  console.log('groupedMessages', groupedMessages);
-  console.log(
-    'Object.entries(groupedMessages)',
-    Object.entries(groupedMessages),
-  );
 
   return (
     <div className="chat-container">

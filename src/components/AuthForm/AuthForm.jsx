@@ -34,7 +34,6 @@ const AuthForm = ({ themeMode }) => {
         toast.success('Registration successful');
       } else {
         await loginWithEmail(data);
-        console.log(userProfile, 'userProfile');
         toast.success('Logged in successfully');
       }
       // navigate('/');

@@ -57,7 +57,11 @@ export const UserProvider = ({ children }) => {
         displayName: username,
       });
 
-      const profileData = { email, username };
+      const profileData = {
+        email,
+        username,
+        usernameLower: username.toLowerCase(),
+      };
       await setDoc(doc(db, 'users', uid), profileData);
       setUserProfile(profileData);
 
@@ -97,6 +101,7 @@ export const UserProvider = ({ children }) => {
       const profileData = {
         email: user.email || '',
         username: user.displayName || 'Anonymous',
+        usernameLower: user.displayName.toLowerCase(),
         photoURL: user.photoURL || '',
       };
       await setDoc(userRef, profileData);

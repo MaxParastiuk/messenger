@@ -3,21 +3,16 @@ import './FriendsHeader.css';
 import styled from 'styled-components';
 import FriendRequestsModal from '../modals/FriendRequestsModal/FriendRequestsModal';
 import AddFriendModal from '../modals/AddFriendModal/AddFriendModal';
+import { useFriends } from '../../../contexts/FriendsContext';
 const FriendsHeader = ({ requestCount = 1 }) => {
   const [showRequestsModal, setShowRequestsModal] = useState(false);
   const [showAddFriendModal, setShowAddFriendModal] = useState(false);
-  const requests = [
-    { id: 1, name: 'Alice Johnson' },
-    { id: 2, name: 'Bob Smith' },
-    { id: 3, name: 'Charlie Brown' },
-    { id: 4, name: 'Diana Prince' },
-    { id: 5, name: 'Ethan Hunt' },
-    { id: 6, name: 'Fiona Gallagher' },
-    { id: 7, name: 'George Washington' },
-    { id: 8, name: 'Hannah Montana' },
-    { id: 9, name: 'Ian Curtis' },
-    { id: 10, name: 'Jasmine Lee' },
-  ];
+  const {
+    incomingRequests,
+    sendFriendRequest,
+    acceptFriendRequest,
+    declineFriendRequest,
+  } = useFriends();
   return (
     <>
       <FriendsHeaderContainer className="friends-list-header">
@@ -61,15 +56,15 @@ const FriendsHeader = ({ requestCount = 1 }) => {
       </FriendsHeaderContainer>
       {showRequestsModal && (
         <FriendRequestsModal
-          requests={requests}
-          onAccept={() => console.log('hello')}
-          onDecline={() => console.log('hello')}
+          requests={incomingRequests}
+          onAccept={acceptFriendRequest}
+          onDecline={declineFriendRequest}
           onClose={() => setShowRequestsModal(false)}
         />
       )}
       {showAddFriendModal && (
         <AddFriendModal
-          onAdd={() => console.log('hello')}
+          sendFriendRequest={sendFriendRequest}
           onClose={() => setShowAddFriendModal(false)}
         />
       )}
