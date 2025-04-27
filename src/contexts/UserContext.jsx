@@ -26,7 +26,12 @@ export const UserProvider = ({ children }) => {
           const userRef = doc(db, 'users', firebaseUser.uid);
           const userSnap = await getDoc(userRef);
           if (userSnap.exists()) {
-            const profile = userSnap.data();
+            const profileFromDb = userSnap.data();
+            const profile = {
+              uid: firebaseUser.uid,
+              ...profileFromDb,
+            };
+
             setUserProfile(profile);
             localStorage.setItem('userProfile', JSON.stringify(profile));
           }
@@ -57,13 +62,18 @@ export const UserProvider = ({ children }) => {
         displayName: username,
       });
 
+      const photoURL = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+        username,
+      )}&background=random`;
+
       const profileData = {
         email,
         username,
         usernameLower: username.toLowerCase(),
+        photoURL,
       };
       await setDoc(doc(db, 'users', uid), profileData);
-      setUserProfile(profileData);
+      setUserProfile({ ...profileData, uid });
 
       return result.user;
     } catch (error) {
@@ -79,7 +89,7 @@ export const UserProvider = ({ children }) => {
 
     if (userSnap.exists()) {
       const profile = userSnap.data();
-      setUserProfile(profile);
+      setUserProfile({ ...profile, uid: result.user.uid });
       localStorage.setItem('userProfile', JSON.stringify(profile));
     }
 
@@ -96,18 +106,22 @@ export const UserProvider = ({ children }) => {
     const userRef = doc(db, 'users', user.uid);
     const userSnap = await getDoc(userRef);
 
+    const photoURL = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+      user.displayName,
+    )}&background=random`;
+
     // Create profile only once (on first login)
     if (!userSnap.exists()) {
       const profileData = {
         email: user.email || '',
         username: user.displayName || 'Anonymous',
         usernameLower: user.displayName.toLowerCase(),
-        photoURL: user.photoURL || '',
+        photoURL,
       };
       await setDoc(userRef, profileData);
-      setUserProfile(profileData);
+      setUserProfile({ ...profileData, uid: user.uid });
     } else {
-      setUserProfile(userSnap.data());
+      setUserProfile({ ...userSnap.data(), uid: user.uid });
     }
     return user;
   };

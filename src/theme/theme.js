@@ -14,6 +14,7 @@ export const lightTheme = {
   authSwitcherBg: '#ffffff',
   authSwitcherActiveBg: '#a2a2a2 !important',
   friendsHeaderBg: '#d2d2d2',
+  hoverChatItemBg: '#ffffff',
 };
 
 export const darkTheme = {
@@ -32,4 +33,5 @@ export const darkTheme = {
   authSwitcherBg: '#16356d',
   authSwitcherActiveBg: '#0049a4 !important',
   friendsHeaderBg: '#0b2f5a',
+  hoverChatItemBg: '#0e3369',
 };

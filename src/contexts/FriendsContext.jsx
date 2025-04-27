@@ -84,7 +84,7 @@ export const FriendsProvider = ({ children }) => {
 
     if (!chatSnap.exists()) {
       await setDoc(chatRef, {
-        participans: sorted,
+        participants: sorted,
         createdAt: serverTimestamp(),
         lastMessage: null,
       });

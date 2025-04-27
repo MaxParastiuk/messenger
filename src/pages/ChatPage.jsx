@@ -1,22 +1,22 @@
 import styled from 'styled-components';
 import ChatListItem from '../components/chat/ChatListItem/ChatListItem';
 import ChatConversation from '../components/chat/ChatConversation/ChatConversation';
+import { useChat } from '../contexts/ChatContext';
 
 const ChatPage = () => {
+  const { chats, selectChat, activeChatId } = useChat();
   return (
     <ChatContainer>
       <ChatList>
         <ChatListHealine>Messeges</ChatListHealine>
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
-        <ChatListItem />
+        {chats.map((chat) => (
+          <ChatListItem
+            key={chat.id}
+            chat={chat}
+            isActive={chat.id === activeChatId}
+            onClick={() => selectChat(chat.id)}
+          />
+        ))}
       </ChatList>
       <ChatConversation />
     </ChatContainer>

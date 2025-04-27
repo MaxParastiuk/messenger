@@ -21,3 +21,30 @@
 .message-block p {
   margin: 0;
 }
+
+.skeleton-avatar {
+  background-color: #ccc;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+
+.skeleton-line {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  height: 16px;
+  width: 100px;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
