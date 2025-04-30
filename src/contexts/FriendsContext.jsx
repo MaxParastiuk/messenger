@@ -90,13 +90,54 @@ export const FriendsProvider = ({ children }) => {
       });
     }
 
+    // update request status
     await updateDoc(doc(db, 'friendRequests', id), {
       status: 'accepted',
     });
+
+    const fromRef = doc(db, 'users', from);
+    const toRef = doc(db, 'users', to);
+
+    // add each other to friends
+    const [fromSnap, toSnap] = await Promise.all([
+      getDoc(fromRef),
+      getDoc(toRef),
+    ]);
+    const fromData = fromSnap.data();
+    const toData = toSnap.data();
+
+    await Promise.all([
+      setDoc(doc(db, 'users', from, 'friends', to), {
+        uid: to,
+        username: toData.username,
+        avatar: toData.photoURL,
+      }),
+      setDoc(doc(db, 'users', to, 'friends', from), {
+        uid: from,
+        username: fromData.username,
+        avatar: fromData.photoURL,
+      }),
+    ]);
   };
 
   const declineFriendRequest = async (id) => {
     await deleteDoc(doc(db, 'friendRequests', id));
+  };
+
+  const removeFriend = async (friendUid) => {
+    const currentUser = auth.currentUser;
+    if (!currentUser) throw new Error('Not authenticated');
+
+    try {
+      // Remove from me
+      await deleteDoc(doc(db, 'users', currentUser.uid, 'friends', friendUid));
+
+      // Remove from friend
+      await deleteDoc(doc(db, 'users', friendUid, 'friends', currentUser.uid));
+    } catch (error) {
+      console.error('Failed to remove friend:', error);
+      throw error;
+    }
   };
   return (
     <FriendsContext.Provider
@@ -105,6 +146,7 @@ export const FriendsProvider = ({ children }) => {
         sendFriendRequest,
         acceptFriendRequest,
         declineFriendRequest,
+        removeFriend,
       }}
     >
       {children}

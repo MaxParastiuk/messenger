@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import FriendRequestsModal from '../modals/FriendRequestsModal/FriendRequestsModal';
 import AddFriendModal from '../modals/AddFriendModal/AddFriendModal';
 import { useFriends } from '../../../contexts/FriendsContext';
-const FriendsHeader = ({ requestCount = 1 }) => {
+const FriendsHeader = () => {
   const [showRequestsModal, setShowRequestsModal] = useState(false);
   const [showAddFriendModal, setShowAddFriendModal] = useState(false);
   const {
@@ -13,20 +13,22 @@ const FriendsHeader = ({ requestCount = 1 }) => {
     acceptFriendRequest,
     declineFriendRequest,
   } = useFriends();
+
+  const requestCount = incomingRequests.length;
   return (
     <>
       <FriendsHeaderContainer className="friends-list-header">
         <FriendsListHeadline>Friends List</FriendsListHeadline>
         <div className="friends-controls">
           <div className="friends-search">
-            <SearchInput
+            {/* <SearchInput
               type="text"
               id="search-friend"
               name="search-friend"
               placeholder="Search friend..."
               aria-label="Search friend"
             />
-            <SearchIcon className="material-icons">search</SearchIcon>
+            <SearchIcon className="material-icons">search</SearchIcon> */}
           </div>
 
           <div className="friends-panel">
@@ -74,6 +76,7 @@ const FriendsHeader = ({ requestCount = 1 }) => {
 
 const FriendsHeaderContainer = styled.div`
   background-color: ${({ theme }) => theme.friendsHeaderBg};
+  flex-basis: 20%;
 `;
 
 const FriendsListHeadline = styled.h2`
@@ -83,40 +86,40 @@ const FriendsListHeadline = styled.h2`
   font-weight: 600;
 `;
 
-const SearchInput = styled.input`
-  padding: 0.5rem 2.4rem 0.5rem 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  font-size: 1rem;
-  min-width: 250px;
-  outline: none;
-  background: #ffffff;
-  color: #333;
-  transition: all 0.3s ease;
+// const SearchInput = styled.input`
+//   padding: 0.5rem 2.4rem 0.5rem 0.8rem;
+//   border: 1px solid #ccc;
+//   border-radius: 12px;
+//   font-size: 1rem;
+//   min-width: 250px;
+//   outline: none;
+//   background: #ffffff;
+//   color: #333;
+//   transition: all 0.3s ease;
 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+//   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-  &::placeholder {
-    color: #aaa;
-    font-style: italic;
-  }
+//   &::placeholder {
+//     color: #aaa;
+//     font-style: italic;
+//   }
 
-  &:hover {
-    border-color: #bbb;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  }
+//   &:hover {
+//     border-color: #bbb;
+//     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+//   }
 
-  &:focus {
-    border-color: #0f82ff;
-    box-shadow: 0 0 0 3px rgba(15, 130, 255, 0.25);
-  }
-`;
+//   &:focus {
+//     border-color: #0f82ff;
+//     box-shadow: 0 0 0 3px rgba(15, 130, 255, 0.25);
+//   }
+// `;
 
-const SearchIcon = styled.span`
-  position: absolute;
-  right: 0.6rem;
-  color: #888;
-  pointer-events: none;
-`;
+// const SearchIcon = styled.span`
+//   position: absolute;
+//   right: 0.6rem;
+//   color: #888;
+//   pointer-events: none;
+// `;
 
 export default FriendsHeader;
