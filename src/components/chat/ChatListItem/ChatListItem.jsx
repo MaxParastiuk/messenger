@@ -43,7 +43,7 @@ const UserMessege = styled.div`
   padding: 10px 5px;
   align-items: center;
   border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: transform 0.2s ease;
   cursor: pointer;
 
   &:hover {
