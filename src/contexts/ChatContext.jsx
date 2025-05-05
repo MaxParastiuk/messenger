@@ -20,6 +20,9 @@ export const ChatProvider = ({ children }) => {
   const [activateChatId, setActivateChatId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [userCache, setUserCache] = useState(new Map());
+  const [isFriend, setIsFriend] = useState(true);
+
+  const activeChat = chats.find((chat) => chat.id === activateChatId) || null;
 
   // chat subscription
   useEffect(() => {
@@ -45,7 +48,7 @@ export const ChatProvider = ({ children }) => {
     return () => unsub();
   }, [userProfile?.uid]);
 
-  // activated chat messages subsription
+  // activated chat subsription
   useEffect(() => {
     if (!activateChatId) return;
 
@@ -65,7 +68,10 @@ export const ChatProvider = ({ children }) => {
     return () => unsub();
   }, [activateChatId]);
 
-  //
+  /* 
+    When chats are loaded, collect all unique participants (excluding current user)
+    and fetch their user profiles from Firestore only if not already cached.
+  */
   useEffect(() => {
     if (!userProfile?.uid || chats.length === 0) return;
 
@@ -92,6 +98,25 @@ export const ChatProvider = ({ children }) => {
     })();
   }, [chats, userProfile?.uid, userCache]);
 
+  // real-time check if uesrs still friends
+  useEffect(() => {
+    if (!userProfile?.uid || !activeChat) return;
+
+    const otherUid = activeChat.participants.find(
+      (uid) => uid !== userProfile.uid,
+    );
+
+    if (!otherUid) return;
+
+    const friendRef = doc(db, 'users', userProfile.uid, 'friends', otherUid);
+
+    const unsub = onSnapshot(friendRef, (snap) => {
+      setIsFriend(snap.exists());
+    });
+
+    return () => unsub();
+  }, [userProfile?.uid, activeChat]);
+
   const selectChat = (chatId) => {
     setActivateChatId(chatId);
   };
@@ -112,8 +137,6 @@ export const ChatProvider = ({ children }) => {
     }
   };
 
-  const activeChat = chats.find((chat) => chat.id === activateChatId) || null;
-
   return (
     <ChatContext.Provider
       value={{
@@ -124,6 +147,7 @@ export const ChatProvider = ({ children }) => {
         userCache,
         sendMessage,
         selectChat,
+        isFriend,
       }}
     >
       {children}

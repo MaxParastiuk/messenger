@@ -7,7 +7,7 @@ import { useUser } from '../../../contexts/UserContext';
 
 const ChatConversation = () => {
   const { userProfile } = useUser();
-  const { activeChat, messages, userCache, sendMessage } = useChat();
+  const { activeChat, messages, userCache, sendMessage, isFriend } = useChat();
   const [newMessage, setNewMessage] = useState('');
 
   const otherUid = activeChat?.participants?.find(
@@ -43,7 +43,9 @@ const ChatConversation = () => {
     <div className="chat-container">
       {!activeChat ? (
         <EmptyChatPlaceholder>
-          <PlaceholderIcon>💬</PlaceholderIcon>
+          <PlaceholderIcon>
+            <span>&#128172;</span>
+          </PlaceholderIcon>
           <PlaceholderText>Select a chat to start messaging</PlaceholderText>
         </EmptyChatPlaceholder>
       ) : (
@@ -85,29 +87,34 @@ const ChatConversation = () => {
               </div>
             ))}
           </Chat>
-          <InputContainer className="input-container">
-            <button className="attach-btn">
-              <span className="material-icons">attach_file</span>
-            </button>
-            <textarea
-              className="input-message"
-              placeholder="Type your Message..."
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault();
-                  hadnleSendMessage();
-                }
-              }}
-            />
-            <button className="mic-btn">
-              <span className="material-icons">mic</span>
-            </button>
-            <button className="send-btn" onClick={hadnleSendMessage}>
-              <span className="material-icons">send</span>
-            </button>
-          </InputContainer>
+
+          {isFriend ? (
+            <InputContainer className="input-container">
+              <button className="attach-btn">
+                <span className="material-icons">attach_file</span>
+              </button>
+              <textarea
+                className="input-message"
+                placeholder="Type your Message..."
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    hadnleSendMessage();
+                  }
+                }}
+              />
+              <button className="mic-btn">
+                <span className="material-icons">mic</span>
+              </button>
+              <button className="send-btn" onClick={hadnleSendMessage}>
+                <span className="material-icons">send</span>
+              </button>
+            </InputContainer>
+          ) : (
+            <BlockedChat>You are not friends anymore</BlockedChat>
+          )}
         </>
       )}
     </div>
@@ -159,6 +166,12 @@ const PlaceholderIcon = styled.div`
 const PlaceholderText = styled.p`
   font-size: 1.2rem;
   margin: 0;
+`;
+
+const BlockedChat = styled.div`
+  padding: 20px;
+  text-align: center;
+  font-style: italic;
 `;
 
 export default ChatConversation;
